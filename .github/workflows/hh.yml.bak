@@ -1,0 +1,53 @@
+# 当前 workflow 的名称
+name: Deploy Docusaurus to Windows Server
+
+# 指定 workflow 触发的 event
+on:
+  push:
+    branches:
+      - master # 只有 master 分支发生 push 事件时，才会触发 workflow
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+      - LICENSE
+# 一个 workflow 由一个或多个 job 组成
+jobs:
+  # job id: 是 job 的唯一标识
+  build_and_deploy:
+    # 在 Github 中显示的 job 名称
+    name: Build and Deploy
+    # job 运行的环境配置
+    runs-on: ubuntu-latest
+    # 一个 job 由多个 step 组成
+    steps:
+      # 当前 step 的名字
+      - name: Checkout
+        # checkout action 主要用于向 github 仓库拉取源代码
+        # https://github.com/actions/checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Use Node.js
+        # 配置 Node 执行环境（当前构建的服务器默认没有 Node 环境，可以通过 Action 安装 Node）
+        # https://github.com/actions/setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Build
+        # 安装 Node 之后就可以执行构建脚本
+        run: |
+          yarn 
+          yarn build
+
+      - name: ftp Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.HOST }} # 你的服务器地址，需要在 Github 中设置 secrets 
+          username: ${{ secrets.USERNAME }} # 你的服务器用户名，需要在 Github 中设置 secrets 
+          password: ${{ secrets.PASSWORD }} # 你的服务器密码，需要在 Github 中设置 secrets 
+          port: ${{ secrets.PORT }} # 端口
+          local-dir: build/ # 要上传的本地目录，默认是项目根目录 
+          server-dir: / # 要上传到的服务器目录，默认
+          timeout: 120000
+          
