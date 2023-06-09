@@ -119,13 +119,17 @@ const config = {
             title: 'Community',
             items: [
               {
+                label: '关于我',
+                to:'/about'
+              },
+              {
                 label: '博客园',
                 href: 'https://www.cnblogs.com/jeffery-liu/#/c/subject/category/default.html',
               },
               {
-                label: '关于我',
-                to:'/about'
-              },
+                label: 'Telegram',
+                href: 'https://t.me/jeffreyhhhh'
+              }
             ],
           },
           {
