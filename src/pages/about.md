@@ -19,7 +19,7 @@ description: 刘泽桦的自我介绍
 
 ### 🤙联系我
 
-[邮箱](jeffery_9@163.com "163mail")
+[邮箱](mailto:jeffery_9@163.com "163mail")
 
 [QQ](https://qm.qq.com/cgi-bin/qm/qr?k=GNv1ijMaDMZ39BCEufoE3tHEEu7-bUtL&noverify=0&personal_qrcode_source=3 "qq")
 
