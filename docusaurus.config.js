@@ -153,6 +153,11 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      docs: {
+      sidebar: {
+        hideable: true,//隐藏侧边栏
+      },
+    },
     }),
     plugins: [
       [
