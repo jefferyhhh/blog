@@ -55,6 +55,7 @@ const config = {
         blog: {
           showReadingTime: true,
           blogSidebarTitle: "近期文章",
+          blogDescription: '刘泽桦的技术随笔',
           // blogSidebarCount: "ALL",//所有blog，默认是最近
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
